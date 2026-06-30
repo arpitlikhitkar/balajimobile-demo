@@ -1211,20 +1211,14 @@ img {
 }
 
 .premium-stage {
-  align-items: stretch;
-  display: grid;
-  gap: 1rem;
+  display: block;
   margin-top: 2.75rem;
 }
 
 @media (min-width: 1120px) {
-  .premium-stage {
-    grid-template-columns: minmax(0, 1.45fr) minmax(23rem, 0.72fr);
-  }
-
   .premium-hero-card {
     aspect-ratio: auto;
-    height: 36rem;
+    height: clamp(32rem, 42vw, 39rem);
     min-height: 0;
   }
 }
@@ -1288,8 +1282,7 @@ img {
   z-index: 1;
 }
 
-.premium-hero-copy span,
-.premium-photo-content span {
+.premium-hero-copy span {
   color: rgb(255 255 255 / 0.58);
   font-size: 0.78rem;
   font-weight: 820;
@@ -1341,130 +1334,6 @@ img {
 .premium-spec span {
   color: rgb(255 255 255 / 0.52);
   font-size: 0.82rem;
-}
-
-.premium-showcase-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-@media (min-width: 1120px) {
-  .premium-showcase-grid {
-    height: 36rem;
-  }
-}
-
-.premium-photo-card {
-  aspect-ratio: 16 / 10;
-  background: #111111;
-  border: 1px solid rgb(255 255 255 / 0.1);
-  border-radius: 8px;
-  box-shadow: 0 22px 70px rgb(0 0 0 / 0.32);
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-  transform: translateY(0);
-  transition: var(--card-transition);
-  will-change: transform, box-shadow;
-}
-
-@media (min-width: 1120px) {
-  .premium-photo-card {
-    aspect-ratio: auto;
-    height: 100%;
-    min-height: 0;
-  }
-}
-
-.premium-photo-card img {
-  filter: brightness(0.7) contrast(1.04);
-  height: 100%;
-  inset: 0;
-  object-fit: cover;
-  position: absolute;
-  transform: scale(1.01);
-  transition:
-    filter 360ms var(--card-ease),
-    transform 360ms var(--card-ease);
-  width: 100%;
-}
-
-.premium-photo-card::after {
-  background:
-    linear-gradient(180deg, rgb(0 0 0 / 0.06), rgb(0 0 0 / 0.82)),
-    linear-gradient(90deg, rgb(0 0 0 / 0.46), transparent 72%);
-  content: "";
-  inset: 0;
-  position: absolute;
-  transition: opacity 360ms var(--card-ease);
-}
-
-.premium-photo-card:hover {
-  border-color: rgb(255 255 255 / 0.2);
-  box-shadow: 0 34px 100px rgb(0 0 0 / 0.5);
-  transform: translateY(-8px) !important;
-}
-
-.premium-photo-card:hover img {
-  filter: blur(1.8px) brightness(0.58) contrast(1.08);
-  transform: scale(1.08);
-}
-
-.premium-photo-content {
-  bottom: 0;
-  color: white;
-  display: grid;
-  gap: 0.45rem;
-  left: 0;
-  padding: 1.25rem;
-  position: absolute;
-  right: 0;
-  transform: translateY(1.65rem);
-  transition: transform 360ms var(--card-ease);
-  z-index: 1;
-}
-
-.premium-photo-card:hover .premium-photo-content {
-  transform: translateY(0);
-}
-
-.premium-photo-content h3 {
-  font-size: 1.2rem;
-  font-weight: 800;
-  margin: 0;
-}
-
-.premium-photo-content p {
-  color: rgb(255 255 255 / 0.72);
-  line-height: 1.55;
-  margin: 0;
-  opacity: 0;
-  transition: opacity 360ms var(--card-ease);
-}
-
-.premium-photo-card:hover .premium-photo-content p {
-  opacity: 1;
-}
-
-.premium-card-meta {
-  background: rgb(255 255 255 / 0.9);
-  border-radius: 999px;
-  color: #171717;
-  font-size: 0.78rem;
-  font-weight: 780;
-  padding: 0.45rem 0.7rem;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  transform: translateY(-0.45rem);
-  transition:
-    opacity 360ms var(--card-ease),
-    transform 360ms var(--card-ease);
-  z-index: 1;
-}
-
-.premium-photo-card:hover .premium-card-meta {
-  transform: translateY(0);
 }
 
 .premium-model-strip {
@@ -2240,11 +2109,11 @@ img {
 
   .premium-hero-card {
     aspect-ratio: auto;
-    min-height: 38rem;
+    min-height: 34rem;
   }
 
   .premium-hero-copy {
-    bottom: 13.5rem;
+    bottom: 12rem;
     padding: 1.25rem;
   }
 
@@ -2261,18 +2130,6 @@ img {
     border-top: 1px solid rgb(255 255 255 / 0.12);
     min-height: auto;
     padding: 0.78rem 1rem;
-  }
-
-  .premium-photo-card {
-    aspect-ratio: 1 / 0.86;
-  }
-
-  .premium-photo-content {
-    transform: translateY(0);
-  }
-
-  .premium-photo-content p {
-    opacity: 1;
   }
 
   .mobile-carousel {
@@ -2420,7 +2277,6 @@ img {
   .image-panel:hover,
   .gallery-card:hover,
   .premium-hero-card:hover,
-  .premium-photo-card:hover,
   .mobile-product-card:hover,
   .coupon-offer-card:hover,
   .metric-card:hover,
@@ -2431,7 +2287,6 @@ img {
   .image-panel:hover img,
   .gallery-card:hover img,
   .premium-hero-card:hover img,
-  .premium-photo-card:hover img,
   .mobile-product-card:hover > img:not(.mobile-card-ghost) {
     transform: none;
   }
@@ -2451,14 +2306,12 @@ img {
     opacity: 1;
   }
 
-  .premium-hero-card img,
-  .premium-photo-card img {
+  .premium-hero-card img {
     filter: brightness(0.76) contrast(1.04);
     transform: none;
   }
 
-  .premium-hero-card:hover img,
-  .premium-photo-card:hover img {
+  .premium-hero-card:hover img {
     filter: brightness(0.76) contrast(1.04);
   }
 
