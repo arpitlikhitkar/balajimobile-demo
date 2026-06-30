@@ -18,6 +18,7 @@ import {
   MessageCircle,
   Navigation,
   PackageCheck,
+  Phone,
   Search,
   ShieldCheck,
   ShoppingBag,
@@ -27,6 +28,7 @@ import {
   Wrench,
   X,
 } from "lucide-react";
+import luxuryCouponBg from "./assets/luxury-coupon-bg.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,12 +70,102 @@ const gallery = [
     text: "Walk-in customers ke liye visible and recognizable mobile-store display.",
     image: shopPhotos.frontage,
   },
+  // {
+  //   title: "Phone Showcase",
+  //   text: "Phone enquiry aur product highlights ke liye focused visual space.",
+  //   image: shopPhotos.product,
+  // },
+];
+
+const premiumShowcase = [
   {
-    title: "Phone Showcase",
-    text: "Phone enquiry aur product highlights ke liye focused visual space.",
+    title: "Signature Storefront",
+    label: "Exterior",
+    meta: "Kothi Bazaar, Betul",
+    text: "Storefront ko flagship visual ki tarah present kiya gaya hai, taaki shop identity first glance me clear lage.",
+    image: shopPhotos.storefront,
+  },
+  {
+    title: "Accessory Gallery",
+    label: "Interior",
+    meta: "Mobiles & accessories",
+    text: "Counter aur wall display ko clean retail-gallery look diya gaya hai.",
+    image: shopPhotos.interior,
+  },
+  {
+    title: "Front Display",
+    label: "Presence",
+    meta: "Walk-in visibility",
+    text: "Street-facing display customer ko shop location aur brand recall dono deta hai.",
+    image: shopPhotos.frontage,
+  },
+  {
+    title: "Phone Highlight",
+    label: "Product",
+    meta: "Phone enquiries",
+    text: "Phone category ko minimal product-frame style me rakha gaya hai.",
     image: shopPhotos.product,
   },
 ];
+
+const premiumSpecs = [
+  { value: "5.0", label: "Justdial rating" },
+  { value: "10 AM - 10 PM", label: "Store hours" },
+  { value: "Kothi Bazaar", label: "Betul location" },
+];
+
+const mobileCarousel = [
+  {
+    title: "Smartphone Enquiry",
+    label: "Mobile counter",
+    text: "New phone aur upgrade ke liye store visit par options check karein.",
+    image: shopPhotos.product,
+  },
+  {
+    title: "5G Upgrade Desk",
+    label: "Phone guidance",
+    text: "Budget aur usage ke hisaab se phone selection me support.",
+    image: shopPhotos.interior,
+  },
+  {
+    title: "Daily Use Setup",
+    label: "Accessories ready",
+    text: "Phone ke saath cover, glass, charger aur cable options.",
+    image: shopPhotos.frontage,
+  },
+  {
+    title: "Store Walk-in",
+    label: "Kothi Bazaar",
+    text: "Latest availability aur price store/listing par verify karein.",
+    image: shopPhotos.storefront,
+  },
+];
+
+const couponOffers = [
+  {
+    id: "cover20",
+    title: "Cover Counter",
+    price: "Rs 20+",
+    text: "Budget back covers store par ask karein.",
+    code: "BALAJI-COVER20",
+  },
+  {
+    id: "glass30",
+    title: "Glass Counter",
+    price: "Rs 30+",
+    text: "Tempered glass options store par ask karein.",
+    code: "BALAJI-GLASS30",
+  },
+  {
+    id: "combo",
+    title: "Accessory Pass",
+    price: "Store deal",
+    text: "Cover, glass aur cable combo ke liye enquiry.",
+    code: "BALAJI-COMBO",
+  },
+];
+
+const couponStorageKey = "balaji-mobile-claimed-coupons";
 
 const services = [
   {
@@ -198,7 +290,17 @@ function App() {
     if (section && lenisRef.current) {
       lenisRef.current.scrollTo(section, { offset: -72 });
     } else {
-      section?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const useNormalScroll = window.matchMedia(
+        "(max-width: 767px), (pointer: coarse)",
+      ).matches;
+
+      if (section) {
+        const top = section.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({
+          top,
+          behavior: useNormalScroll ? "auto" : "smooth",
+        });
+      }
     }
 
     if (window.location.hash) {
@@ -211,11 +313,21 @@ function App() {
       window.history.replaceState(null, "", window.location.pathname);
     }
 
+    const useNativeScroll = window.matchMedia(
+      "(max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (useNativeScroll) {
+      lenisRef.current = null;
+      return undefined;
+    }
+
     const lenis = new Lenis({
-      lerp: 0.075,
+      lerp: 0.14,
       smoothWheel: true,
-      wheelMultiplier: 0.82,
-      touchMultiplier: 1.1,
+      smoothTouch: false,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
     });
     lenisRef.current = lenis;
 
@@ -235,35 +347,37 @@ function App() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const compactMotion = window.matchMedia(
+      "(max-width: 767px), (pointer: coarse)",
+    ).matches;
 
     const ctx = gsap.context(() => {
       if (prefersReducedMotion) {
         gsap.set("[data-reveal]", {
           autoAlpha: 1,
           y: 0,
-          filter: "blur(0px)",
         });
         return;
       }
 
       const heroTimeline = gsap.timeline({
-        defaults: { ease: "power3.out", duration: 0.9 },
+        defaults: { ease: "power3.out", duration: compactMotion ? 0.65 : 0.9 },
       });
 
       heroTimeline
-        .from(".site-header", { y: -90, autoAlpha: 0 })
-        .from(".hero-eyebrow", { y: 24, autoAlpha: 0 }, "-=0.35")
-        .from(".hero-title", { y: 50, autoAlpha: 0 }, "-=0.55")
-        .from(".hero-copy", { y: 32, autoAlpha: 0 }, "-=0.55")
-        .from(".hero-proof span", { y: 20, autoAlpha: 0, stagger: 0.08 }, "-=0.45")
-        .from(".hero-actions > *", { y: 22, autoAlpha: 0, stagger: 0.08 }, "-=0.45")
+        .from(".site-header", { y: -36, duration: 0.45 })
+        .from(".hero-eyebrow", { y: 14, duration: 0.45 }, "-=0.25")
+        .from(".hero-title", { y: 24, duration: 0.5 }, "-=0.35")
         .from(
           ".showcase-card",
-          { y: 72, rotate: 2, autoAlpha: 0, stagger: 0.12 },
-          "-=0.55",
+          { y: 28, rotate: 1.2, duration: 0.65, stagger: 0.05 },
+          "-=0.45",
         )
-        .from(".floating-note", { scale: 0.85, autoAlpha: 0, stagger: 0.1 }, "-=0.5")
-        .from(".scroll-cue", { y: 18, autoAlpha: 0 }, "-=0.4");
+        .from(".hero-copy", { y: 18, duration: 0.45 }, "-=0.5")
+        .from(".hero-proof span", { y: 12, duration: 0.4, stagger: 0.05 }, "-=0.35")
+        .from(".hero-actions > *", { y: 12, duration: 0.4, stagger: 0.05 }, "-=0.3")
+        .from(".floating-note", { scale: 0.92, duration: 0.4, stagger: 0.06 }, "-=0.35")
+        .from(".scroll-cue", { y: 12, duration: 0.35 }, "-=0.3");
 
       gsap.to(".scroll-progress", {
         scaleX: 1,
@@ -276,41 +390,48 @@ function App() {
         },
       });
 
-      gsap.to(".hero-bg", {
-        scale: 1.09,
-        yPercent: 7,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#home",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      if (compactMotion) {
+        gsap.set("[data-reveal]", { autoAlpha: 1, y: 0, rotateX: 0 });
+        return undefined;
+      }
 
-      gsap.to(".showcase-main", {
-        y: -42,
-        rotate: -1.2,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#home",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      if (!compactMotion) {
+        gsap.to(".hero-bg", {
+          scale: 1.09,
+          yPercent: 7,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#home",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
 
-      gsap.to(".showcase-small", {
-        y: 34,
-        rotate: 1.5,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#home",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+        gsap.to(".showcase-main", {
+          y: -42,
+          rotate: -1.2,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#home",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        gsap.to(".showcase-small", {
+          y: 34,
+          rotate: 1.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#home",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
 
       gsap.utils.toArray("[data-reveal]").forEach((element) => {
         if (element.closest("#home")) return;
@@ -324,17 +445,17 @@ function App() {
 
         gsap.fromTo(
           element,
-          { y: 54, autoAlpha: 0, filter: "blur(12px)" },
+          { y: compactMotion ? 0 : 10, autoAlpha: 1 },
           {
             y: 0,
             autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 0.95,
-            ease: "power3.out",
+            duration: compactMotion ? 0 : 0.36,
+            ease: "power2.out",
+            clearProps: "transform",
             scrollTrigger: {
               trigger: element,
-              start: "top 84%",
-              toggleActions: "play none none reverse",
+              start: compactMotion ? "top 96%" : "top 94%",
+              toggleActions: "play none none none",
             },
           },
         );
@@ -345,18 +466,23 @@ function App() {
         .forEach((card, index) => {
           gsap.fromTo(
             card,
-            { y: 44, autoAlpha: 0, rotateX: 6 },
+            {
+              y: compactMotion ? 0 : 8,
+              autoAlpha: 1,
+              rotateX: 0,
+            },
             {
               y: 0,
               autoAlpha: 1,
               rotateX: 0,
-              duration: 0.85,
-              delay: (index % 4) * 0.05,
-              ease: "power3.out",
+              duration: compactMotion ? 0 : 0.32,
+              delay: 0,
+              ease: "power2.out",
+              clearProps: "transform",
               scrollTrigger: {
                 trigger: card,
-                start: "top 86%",
-                toggleActions: "play none none reverse",
+                start: compactMotion ? "top 96%" : "top 94%",
+                toggleActions: "play none none none",
               },
             },
           );
@@ -397,22 +523,24 @@ function App() {
         });
       });
 
-      gsap.utils.toArray(".image-panel, .gallery-card, .about-photo").forEach((card) => {
-        gsap.fromTo(
-          card,
-          { clipPath: "inset(12% 0% 12% 0%)" },
-          {
-            clipPath: "inset(0% 0% 0% 0%)",
-            duration: 1.05,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 82%",
-              toggleActions: "play none none reverse",
+      gsap.utils
+        .toArray(".image-panel, .gallery-card, .about-photo")
+        .forEach((card) => {
+          gsap.fromTo(
+            card,
+            { clipPath: "inset(12% 0% 12% 0%)" },
+            {
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 1.05,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 82%",
+                toggleActions: "play none none none",
+              },
             },
-          },
-        );
-      });
+          );
+        });
 
       const refresh = window.setTimeout(() => ScrollTrigger.refresh(), 350);
       return () => window.clearTimeout(refresh);
@@ -433,17 +561,19 @@ function App() {
       <main>
         <section
           id="home"
-          className="relative min-h-[92vh] overflow-hidden bg-[#111111] text-white"
+          className="home-section relative min-h-[92vh] overflow-hidden bg-[#111111] text-white"
         >
           <img
             className="hero-bg absolute inset-0 h-full w-full object-cover opacity-[0.58]"
             src={shopPhotos.storefront}
             alt="Balaji Mobile storefront with mobile shop displays"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.88),rgba(0,0,0,0.52),rgba(0,0,0,0.18))]" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#f8f7f2,rgba(248,247,242,0))]" />
 
-          <div className="relative z-10 mx-auto grid min-h-[92vh] max-w-7xl items-center gap-12 px-5 py-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
+          <div className="hero-shell relative z-10 mx-auto grid min-h-[92vh] max-w-[104rem] items-center gap-12 px-5 py-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
             <div className="max-w-3xl">
               <div className="hero-eyebrow mb-6 inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/10 px-4 py-2 text-sm text-white/86 backdrop-blur-md">
                 <MapPin className="h-4 w-4 text-[#f3ba45]" />
@@ -499,6 +629,9 @@ function App() {
                   className="parallax-image"
                   src={shopPhotos.interior}
                   alt="Balaji Mobile shop counter and accessory display"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
                 <div className="showcase-label">
                   <span>Shop counter</span>
@@ -510,6 +643,9 @@ function App() {
                   className="parallax-image"
                   src={shopPhotos.evening}
                   alt="Balaji Mobile evening storefront"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               <div className="floating-note note-top">
@@ -532,8 +668,8 @@ function App() {
           </div>
         </section>
 
-        <section className="relative -mt-16 px-5 sm:px-8 lg:px-10">
-          <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
+        <section className="info-strip relative -mt-16 px-5 sm:px-8 lg:px-10">
+          <div className="mx-auto grid max-w-[104rem] gap-4 md:grid-cols-3">
             <InfoTile
               icon={MapPin}
               label="Location"
@@ -635,7 +771,7 @@ function App() {
         </section>
 
         <section className="bg-[#121212] py-20 text-white sm:py-24">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+          <div className="mx-auto grid max-w-[104rem] gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
             <div className="flex flex-col justify-center" data-reveal>
               <span className="section-kicker text-[#f3ba45]">Brand Look</span>
               <h2 className="mt-4 max-w-xl text-4xl font-semibold leading-tight sm:text-5xl">
@@ -705,10 +841,10 @@ function App() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <div className="gallery-grid">
             {gallery.map((item, index) => (
               <figure
-                className={index === 0 ? "gallery-card md:row-span-2" : "gallery-card"}
+                className="gallery-card"
                 data-reveal
                 style={{ transitionDelay: `${index * 80}ms` }}
                 key={item.title}
@@ -728,8 +864,72 @@ function App() {
           </div>
         </section>
 
+        <section className="premium-showcase-section">
+          <div className="premium-showcase-shell">
+            <div className="premium-heading" data-reveal>
+              <div>
+                <span className="premium-kicker">Signature Display</span>
+                <h2>Balaji Mobile ko flagship retail showcase jaisa feel diya.</h2>
+              </div>
+              <p>
+                Large cinematic visuals, tight spacing aur restrained black-shadow
+                treatment se shop photos ko premium brand presentation milta hai.
+              </p>
+            </div>
+
+            <div className="premium-stage">
+              <article className="premium-hero-card" data-reveal>
+                <img
+                  src={premiumShowcase[0].image}
+                  alt={premiumShowcase[0].title}
+                  loading="lazy"
+                />
+                <div className="premium-hero-copy">
+                  <span>{premiumShowcase[0].label}</span>
+                  <h3>{premiumShowcase[0].title}</h3>
+                  <p>{premiumShowcase[0].text}</p>
+                </div>
+                <div className="premium-spec-strip" aria-label="Balaji Mobile facts">
+                  {premiumSpecs.map((item) => (
+                    <div className="premium-spec" key={item.label}>
+                      <strong>{item.value}</strong>
+                      <span>{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <div className="premium-showcase-grid" data-reveal>
+                {premiumShowcase.slice(1).map((item, index) => (
+                  <article className="premium-photo-card" key={item.title}>
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                    <div className="premium-photo-content">
+                      <span>{String(index + 2).padStart(2, "0")} / {item.label}</span>
+                      <h3>{item.title}</h3>
+                      <p>{item.text}</p>
+                    </div>
+                    <div className="premium-card-meta">{item.meta}</div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="premium-model-strip" data-reveal>
+              {premiumShowcase.map((item, index) => (
+                <div className="premium-model-item" key={item.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <strong>{item.title}</strong>
+                    <p>{item.meta}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="process-section">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="mx-auto max-w-[104rem] px-5 sm:px-8 lg:px-10">
             <div className="split-heading text-white" data-reveal>
               <div>
                 <span className="section-kicker text-[#f3ba45]">Customer Flow</span>
@@ -762,7 +962,7 @@ function App() {
         </section>
 
         <section className="proof-section">
-          <div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:px-10">
+          <div className="proof-layout mx-auto grid max-w-[104rem] gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_0.95fr] lg:px-10">
             <div data-reveal>
               <span className="section-kicker">Public Links</span>
               <h2 className="mt-4 max-w-xl text-4xl font-semibold leading-tight sm:text-5xl">
@@ -784,7 +984,7 @@ function App() {
               </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="metric-strip">
               <Metric value="5.0" label="Justdial rating" icon={Star} />
               <Metric value="3" label="Public ratings" icon={BadgeCheck} />
               <Metric value="12 hrs" label="Listed daily window" icon={Clock} />
@@ -824,12 +1024,15 @@ function App() {
 function Header({ menuOpen, onNavigate, setMenuOpen }) {
   return (
     <header className="site-header fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#111111]/88 text-white backdrop-blur-xl">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
+      <nav className="mx-auto flex h-20 max-w-[104rem] items-center justify-between px-5 sm:px-8 lg:px-10">
         <button
           className="brand-button"
           type="button"
           aria-label="Balaji Mobile home"
-          onClick={() => onNavigate("home")}
+          onClick={() => {
+            onNavigate("home");
+            setMenuOpen(false);
+          }}
         >
           <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f3ba45] text-[#111111]">
             <Store className="h-5 w-5" />
@@ -863,34 +1066,41 @@ function Header({ menuOpen, onNavigate, setMenuOpen }) {
         </a>
 
         <button
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/16 md:hidden"
+          className="menu-toggle inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/16 md:hidden"
           type="button"
           aria-label="Toggle navigation menu"
+          aria-controls="mobile-navigation"
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
-      {menuOpen && (
-        <div className="border-t border-white/10 bg-[#111111] px-5 py-5 md:hidden">
-          <div className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <button
-                className="rounded-full px-4 py-3 text-white/80 transition hover:bg-white/[0.08] hover:text-white"
-                type="button"
-                onClick={() => {
-                  onNavigate(link.id);
-                  setMenuOpen(false);
-                }}
-                key={link.id}
-              >
-                {link.label}
-              </button>
-            ))}
-          </div>
+      <div
+        id="mobile-navigation"
+        className={`mobile-menu md:hidden ${menuOpen ? "is-open" : ""}`}
+        aria-hidden={!menuOpen}
+      >
+        <div className="mobile-menu-inner">
+          {navLinks.map((link, index) => (
+            <button
+              className="mobile-nav-link"
+              type="button"
+              tabIndex={menuOpen ? 0 : -1}
+              style={{ transitionDelay: `${index * 28}ms` }}
+              onClick={() => {
+                onNavigate(link.id);
+                setMenuOpen(false);
+              }}
+              key={link.id}
+            >
+              <span>{link.label}</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          ))}
         </div>
-      )}
+      </div>
     </header>
   );
 }
@@ -935,25 +1145,70 @@ function Metric({ value, label, icon: Icon }) {
 
 function Footer() {
   return (
-    <footer className="bg-[#111111] px-5 py-10 text-white sm:px-8 lg:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="font-semibold">Balaji Mobile & Accessories</p>
-          <p className="mt-1 text-sm text-white/56">
-            Mobile sales, accessories and service support in Kothi Bazaar, Betul.
-          </p>
+    <footer className="site-footer">
+      <div className="footer-detail-bar">
+        <div className="footer-detail">
+          <MapPin className="h-5 w-5" />
+          <div>
+            <span>Address</span>
+            <strong>Near Nagar Palika, Kothi Bazaar, Betul</strong>
+          </div>
         </div>
-        <div className="flex flex-wrap gap-3 text-sm">
-          <a className="footer-link" href={instagramUrl} target="_blank" rel="noreferrer">
-            Instagram
-          </a>
-          <a className="footer-link" href={justdialUrl} target="_blank" rel="noreferrer">
-            Justdial
-          </a>
-          <a className="footer-link" href={mapsUrl} target="_blank" rel="noreferrer">
-            Directions
-          </a>
+        <div className="footer-detail">
+          <Phone className="h-5 w-5" />
+          <div>
+            <span>Phone</span>
+            <strong>Call via Justdial listing</strong>
+          </div>
         </div>
+        <div className="footer-detail">
+          <Clock className="h-5 w-5" />
+          <div>
+            <span>Hours</span>
+            <strong>10:00 AM - 10:00 PM</strong>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-main">
+        <div className="footer-brand">
+          <span className="footer-logo">
+            <Store className="h-6 w-6" />
+          </span>
+          <div>
+            <h2>Balaji Mobile & Accessories</h2>
+            <p>
+              Mobile sales, accessories and service support in Kothi Bazaar,
+              Betul. Latest contact details public listings par verify karein.
+            </p>
+          </div>
+        </div>
+
+        <div className="footer-columns">
+          <div>
+            <h3>Visit</h3>
+            <a href={mapsUrl} target="_blank" rel="noreferrer">Get directions</a>
+            <a href={justdialUrl} target="_blank" rel="noreferrer">Justdial profile</a>
+            <a href={instagramUrl} target="_blank" rel="noreferrer">Instagram page</a>
+          </div>
+          <div>
+            <h3>Services</h3>
+            <span>Mobiles</span>
+            <span>Accessories</span>
+            <span>Repair support</span>
+          </div>
+          <div>
+            <h3>Categories</h3>
+            <span>Chargers & cables</span>
+            <span>Audio accessories</span>
+            <span>Screen protection</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <span>Balaji Mobile & Accessories, Betul</span>
+        <span>Public links and directions available for customer verification.</span>
       </div>
     </footer>
   );
