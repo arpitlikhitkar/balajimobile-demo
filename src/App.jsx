@@ -283,6 +283,15 @@ const processSteps = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [claimedCoupons, setClaimedCoupons] = useState(() => {
+    if (typeof window === "undefined") return [];
+
+    try {
+      return JSON.parse(window.localStorage.getItem(couponStorageKey)) ?? [];
+    } catch {
+      return [];
+    }
+  });
   const lenisRef = useRef(null);
 
   const scrollToSection = (id) => {
@@ -306,6 +315,14 @@ function App() {
     if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname);
     }
+  };
+
+  const claimCoupon = (couponId) => {
+    setClaimedCoupons((current) => {
+      const next = current.includes(couponId) ? current : [...current, couponId];
+      window.localStorage.setItem(couponStorageKey, JSON.stringify(next));
+      return next;
+    });
   };
 
   useEffect(() => {
@@ -924,6 +941,73 @@ function App() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="premium-commerce-panel" data-reveal>
+              <div className="premium-carousel-copy">
+                <span className="premium-kicker">Mobile Carousel</span>
+                <h3>Phones aur accessories ko luxury display rail me rakha.</h3>
+                <p>
+                  Cards hover par lift, shadow aur image-copy reveal karte hain.
+                  Current price aur availability store par verify karein.
+                </p>
+              </div>
+
+              <div className="mobile-carousel" aria-label="Premium mobile cards">
+                {mobileCarousel.map((item, index) => (
+                  <article
+                    className="mobile-product-card"
+                    style={{ transitionDelay: `${index * 70}ms` }}
+                    key={item.title}
+                  >
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                    <img
+                      className="mobile-card-ghost"
+                      src={item.image}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                    />
+                    <div className="mobile-product-content">
+                      <span>{item.label}</span>
+                      <h4>{item.title}</h4>
+                      <p>{item.text}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="coupon-board">
+                <div className="coupon-visual-card">
+                  <img src={luxuryCouponBg} alt="" aria-hidden="true" loading="lazy" />
+                  <div>
+                    <span>Luxury Coupon Pass</span>
+                    <strong>Balaji Access Card</strong>
+                    <p>Cover, glass aur accessory enquiries ke liye local coupon pass.</p>
+                  </div>
+                </div>
+
+                <div className="coupon-offer-grid">
+                  {couponOffers.map((offer) => {
+                    const isClaimed = claimedCoupons.includes(offer.id);
+
+                    return (
+                      <article className="coupon-offer-card" key={offer.id}>
+                        <span>{offer.title}</span>
+                        <strong>{offer.price}</strong>
+                        <p>{offer.text}</p>
+                        <button
+                          type="button"
+                          onClick={() => claimCoupon(offer.id)}
+                          aria-pressed={isClaimed}
+                        >
+                          {isClaimed ? offer.code : "Claim coupon"}
+                        </button>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </section>
