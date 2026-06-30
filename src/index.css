@@ -1282,7 +1282,8 @@ img {
   z-index: 1;
 }
 
-.premium-hero-copy span {
+.premium-hero-copy span,
+.premium-photo-content span {
   color: rgb(255 255 255 / 0.58);
   font-size: 0.78rem;
   font-weight: 820;
@@ -1334,6 +1335,138 @@ img {
 .premium-spec span {
   color: rgb(255 255 255 / 0.52);
   font-size: 0.82rem;
+}
+
+.premium-photo-rail {
+  display: grid;
+  gap: 1rem;
+  grid-auto-columns: minmax(18rem, 26rem);
+  grid-auto-flow: column;
+  margin-top: 1rem;
+  overflow-x: auto;
+  padding: 0.15rem 0.1rem 1rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+@media (min-width: 920px) {
+  .premium-photo-rail {
+    grid-auto-columns: initial;
+    grid-auto-flow: initial;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+    padding-bottom: 0;
+  }
+}
+
+.premium-photo-card {
+  aspect-ratio: 16 / 9;
+  background: #111111;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 8px;
+  box-shadow: 0 22px 70px rgb(0 0 0 / 0.34);
+  cursor: pointer;
+  min-height: 15rem;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  transform: translateY(0);
+  transition:
+    border-color 340ms var(--card-ease),
+    box-shadow 340ms var(--card-ease),
+    transform 340ms var(--card-ease);
+  will-change: transform, box-shadow;
+}
+
+.premium-photo-card img {
+  filter: brightness(0.72) contrast(1.04);
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  transform: scale(1.01);
+  transition:
+    filter 340ms var(--card-ease),
+    transform 340ms var(--card-ease);
+  width: 100%;
+}
+
+.premium-photo-card::after {
+  background:
+    linear-gradient(180deg, rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.82)),
+    linear-gradient(90deg, rgb(0 0 0 / 0.42), transparent 72%);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transition: opacity 340ms var(--card-ease);
+}
+
+.premium-photo-card:hover {
+  border-color: rgb(255 255 255 / 0.2);
+  box-shadow: 0 34px 100px rgb(0 0 0 / 0.52);
+  transform: translateY(-8px) !important;
+}
+
+.premium-photo-card:hover img {
+  filter: blur(1.4px) brightness(0.6) contrast(1.08);
+  transform: scale(1.08);
+}
+
+.premium-photo-content {
+  bottom: 0;
+  color: white;
+  display: grid;
+  gap: 0.42rem;
+  left: 0;
+  padding: 1.15rem;
+  position: absolute;
+  right: 0;
+  transform: translateY(1.55rem);
+  transition: transform 340ms var(--card-ease);
+  z-index: 1;
+}
+
+.premium-photo-card:hover .premium-photo-content {
+  transform: translateY(0);
+}
+
+.premium-photo-content h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.premium-photo-content p {
+  color: rgb(255 255 255 / 0.72);
+  line-height: 1.55;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 340ms var(--card-ease);
+}
+
+.premium-photo-card:hover .premium-photo-content p {
+  opacity: 1;
+}
+
+.premium-card-meta {
+  background: rgb(255 255 255 / 0.9);
+  border-radius: 999px;
+  color: #171717;
+  font-size: 0.78rem;
+  font-weight: 780;
+  padding: 0.45rem 0.7rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  transform: translateY(-0.45rem);
+  transition:
+    opacity 340ms var(--card-ease),
+    transform 340ms var(--card-ease);
+  z-index: 1;
+}
+
+.premium-photo-card:hover .premium-card-meta {
+  transform: translateY(0);
 }
 
 .premium-model-strip {
@@ -2277,6 +2410,7 @@ img {
   .image-panel:hover,
   .gallery-card:hover,
   .premium-hero-card:hover,
+  .premium-photo-card:hover,
   .mobile-product-card:hover,
   .coupon-offer-card:hover,
   .metric-card:hover,
@@ -2287,6 +2421,7 @@ img {
   .image-panel:hover img,
   .gallery-card:hover img,
   .premium-hero-card:hover img,
+  .premium-photo-card:hover img,
   .mobile-product-card:hover > img:not(.mobile-card-ghost) {
     transform: none;
   }
@@ -2306,13 +2441,23 @@ img {
     opacity: 1;
   }
 
-  .premium-hero-card img {
+  .premium-hero-card img,
+  .premium-photo-card img {
     filter: brightness(0.76) contrast(1.04);
     transform: none;
   }
 
-  .premium-hero-card:hover img {
+  .premium-hero-card:hover img,
+  .premium-photo-card:hover img {
     filter: brightness(0.76) contrast(1.04);
+  }
+
+  .premium-photo-content {
+    transform: translateY(0);
+  }
+
+  .premium-photo-content p {
+    opacity: 1;
   }
 
   .mobile-product-card > img:not(.mobile-card-ghost),

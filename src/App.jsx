@@ -911,7 +911,20 @@ function App() {
                   ))}
                 </div>
               </article>
+            </div>
 
+            <div className="premium-photo-rail" aria-label="Balaji Mobile photo highlights">
+              {premiumShowcase.slice(1).map((item, index) => (
+                <article className="premium-photo-card" key={item.title}>
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <div className="premium-photo-content">
+                    <span>{String(index + 2).padStart(2, "0")} / {item.label}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                  <div className="premium-card-meta">{item.meta}</div>
+                </article>
+              ))}
             </div>
 
             <div className="premium-model-strip" data-reveal>
