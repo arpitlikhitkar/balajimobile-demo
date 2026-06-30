@@ -913,7 +913,7 @@ function App() {
               </article>
 
               <div className="premium-showcase-grid" data-reveal>
-                {premiumShowcase.slice(1, 3).map((item, index) => (
+                {premiumShowcase.slice(1, 2).map((item, index) => (
                   <article className="premium-photo-card" key={item.title}>
                     <img src={item.image} alt={item.title} loading="lazy" />
                     <div className="premium-photo-content">

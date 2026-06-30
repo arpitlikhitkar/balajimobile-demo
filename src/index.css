@@ -1350,7 +1350,7 @@ img {
 
 @media (min-width: 1120px) {
   .premium-showcase-grid {
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+    height: 36rem;
   }
 }
 
@@ -1371,6 +1371,7 @@ img {
 @media (min-width: 1120px) {
   .premium-photo-card {
     aspect-ratio: auto;
+    height: 100%;
     min-height: 0;
   }
 }
