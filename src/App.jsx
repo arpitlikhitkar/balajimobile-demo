@@ -57,22 +57,22 @@ const shopPhotos = {
 const gallery = [
   {
     title: "Signature Storefront",
-    text: "Kothi Bazaar me Balaji Mobile ki strong visual presence.",
+    text: "A clear street-facing brand presence in Kothi Bazaar.",
     image: shopPhotos.storefront,
   },
   {
     title: "Customer Counter",
-    text: "Mobiles, accessories aur service enquiries ke liye clean counter experience.",
+    text: "A clean counter experience for phones, accessories and service enquiries.",
     image: shopPhotos.interior,
   },
   {
     title: "Front Display",
-    text: "Walk-in customers ke liye visible and recognizable mobile-store display.",
+    text: "A visible storefront display for walk-in customers.",
     image: shopPhotos.frontage,
   },
   // {
   //   title: "Phone Showcase",
-  //   text: "Phone enquiry aur product highlights ke liye focused visual space.",
+  //   text: "Focused visual space for phone enquiries and product highlights.",
   //   image: shopPhotos.product,
   // },
 ];
@@ -82,28 +82,28 @@ const premiumShowcase = [
     title: "Signature Storefront",
     label: "Exterior",
     meta: "Kothi Bazaar, Betul",
-    text: "Storefront ko flagship visual ki tarah present kiya gaya hai, taaki shop identity first glance me clear lage.",
+    text: "A flagship storefront visual built for instant brand recognition.",
     image: shopPhotos.storefront,
   },
   {
     title: "Accessory Gallery",
     label: "Interior",
     meta: "Mobiles & accessories",
-    text: "Counter aur wall display ko clean retail-gallery look diya gaya hai.",
+    text: "Counter and wall displays presented with a clean retail-gallery look.",
     image: shopPhotos.interior,
   },
   {
     title: "Front Display",
     label: "Presence",
     meta: "Walk-in visibility",
-    text: "Street-facing display customer ko shop location aur brand recall dono deta hai.",
+    text: "A street-facing view that supports location clarity and brand recall.",
     image: shopPhotos.frontage,
   },
   {
     title: "Phone Highlight",
     label: "Product",
     meta: "Phone enquiries",
-    text: "Phone category ko minimal product-frame style me rakha gaya hai.",
+    text: "Phone enquiries framed with a minimal product-led presentation.",
     image: shopPhotos.product,
   },
 ];
@@ -118,25 +118,25 @@ const mobileCarousel = [
   {
     title: "Smartphone Enquiry",
     label: "Mobile counter",
-    text: "New phone aur upgrade ke liye store visit par options check karein.",
+    text: "Explore phone and upgrade options during a store visit.",
     image: shopPhotos.product,
   },
   {
     title: "5G Upgrade Desk",
     label: "Phone guidance",
-    text: "Budget aur usage ke hisaab se phone selection me support.",
+    text: "Get phone guidance based on budget and daily usage.",
     image: shopPhotos.interior,
   },
   {
     title: "Daily Use Setup",
     label: "Accessories ready",
-    text: "Phone ke saath cover, glass, charger aur cable options.",
+    text: "Pair a phone with cover, glass, charger and cable options.",
     image: shopPhotos.frontage,
   },
   {
     title: "Store Walk-in",
     label: "Kothi Bazaar",
-    text: "Latest availability aur price store/listing par verify karein.",
+    text: "Verify current availability and pricing through the store listing.",
     image: shopPhotos.storefront,
   },
 ];
@@ -146,21 +146,21 @@ const couponOffers = [
     id: "cover20",
     title: "Cover Counter",
     price: "Rs 20+",
-    text: "Budget back covers store par ask karein.",
+    text: "Ask in store for budget back-cover options.",
     code: "BALAJI-COVER20",
   },
   {
     id: "glass30",
     title: "Glass Counter",
     price: "Rs 30+",
-    text: "Tempered glass options store par ask karein.",
+    text: "Ask in store for tempered-glass options.",
     code: "BALAJI-GLASS30",
   },
   {
     id: "combo",
     title: "Accessory Pass",
     price: "Store deal",
-    text: "Cover, glass aur cable combo ke liye enquiry.",
+    text: "Enquire about cover, glass and cable combos.",
     code: "BALAJI-COMBO",
   },
 ];
@@ -172,28 +172,28 @@ const services = [
     icon: Smartphone,
     title: "Mobile Sales",
     description:
-      "New phone purchase aur upgrade enquiries ke liye clear and polished section.",
+      "A clear section for new phone purchases and upgrade enquiries.",
     points: ["Phone enquiries", "Brand options", "Upgrade guidance"],
   },
   {
     icon: Wrench,
     title: "Repair & Service",
     description:
-      "Device issue, repair support aur service enquiries ke liye dedicated section.",
+      "Dedicated support for device issues, repairs and service enquiries.",
     points: ["Device check", "Service support", "Issue guidance"],
   },
   {
     icon: ShoppingBag,
     title: "Mobile Accessories",
     description:
-      "Covers, chargers, audio aur daily-use accessories ko premium category ke roop me present kiya gaya hai.",
+      "Covers, chargers, audio gear and daily accessories presented as a premium category.",
     points: ["Cases", "Chargers", "Audio accessories"],
   },
   {
     icon: ShieldCheck,
     title: "Screen Protection",
     description:
-      "Screen guard, tempered glass aur back cover jaise protection items ke liye section.",
+      "A focused section for screen guards, tempered glass and back-cover protection.",
     points: ["Tempered glass", "Back covers", "Screen protection"],
   },
 ];
@@ -218,15 +218,15 @@ const marqueeItems = [
 const storePillars = [
   {
     title: "Strong brand presence",
-    text: "Website ka first impression Balaji Mobile ke name, location aur real visuals par based hai.",
+    text: "The first impression is built around the store name, location and real visuals.",
   },
   {
-    title: "Customer ko clear next step",
-    text: "Directions, Instagram aur listing links polished layout me easily available hain.",
+    title: "Clear next step",
+    text: "Directions, Instagram and listing links are easy to access from the layout.",
   },
   {
     title: "Complete service clarity",
-    text: "Mobiles, accessories, repair aur screen protection clearly separated hain.",
+    text: "Mobiles, accessories, repairs and screen protection are clearly separated.",
   },
 ];
 
@@ -234,50 +234,50 @@ const categories = [
   {
     icon: Smartphone,
     title: "Smartphones",
-    text: "New phone aur upgrade enquiries ke liye premium product category.",
+    text: "A premium category for new phone and upgrade enquiries.",
   },
   {
     icon: ShieldCheck,
     title: "Protection",
-    text: "Tempered glass, covers aur screen protection jaise daily-use items.",
+    text: "Tempered glass, covers and screen-protection essentials.",
   },
   {
     icon: Headphones,
     title: "Audio",
-    text: "Earphones aur mobile audio accessories ke liye separate category.",
+    text: "A dedicated category for earphones and mobile audio accessories.",
   },
   {
     icon: BatteryCharging,
     title: "Power",
-    text: "Chargers, cables aur power accessories ko quick scanning ke liye group kiya.",
+    text: "Chargers, cables and power accessories grouped for quick scanning.",
   },
   {
     icon: Wrench,
     title: "Service Desk",
-    text: "Repair aur support information ko direct aur easy rakha gaya hai.",
+    text: "Repair and support information kept direct and easy to read.",
   },
   {
     icon: PackageCheck,
     title: "Daily Essentials",
-    text: "Roz use hone wali mobile accessories ke liye practical section.",
+    text: "A practical section for everyday mobile accessories.",
   },
 ];
 
 const processSteps = [
   {
     icon: MessageCircle,
-    title: "Customer ki need",
-    text: "Phone, accessory, repair ya protection me kya chahiye, page usko clearly guide karta hai.",
+    title: "Understand the need",
+    text: "The page separates phone, accessory, repair and protection needs clearly.",
   },
   {
     icon: Search,
-    title: "Right section tak pahunch",
-    text: "Customer ko jaldi samajh aata hai ki phone, accessory ya service ke liye kahan click karna hai.",
+    title: "Find the right section",
+    text: "Customers can quickly identify where to check phones, accessories or service support.",
   },
   {
     icon: CheckCircle2,
-    title: "Dukan tak easy visit",
-    text: "Directions, Justdial aur Instagram links se customer store details verify kar sakta hai.",
+    title: "Move toward a visit",
+    text: "Directions, Justdial and Instagram help customers verify store details before visiting.",
   },
 ];
 
@@ -600,8 +600,8 @@ function App() {
                 Balaji Mobile & Accessories
               </h1>
               <p className="hero-copy mt-6 max-w-2xl text-lg leading-8 text-white/78 sm:text-xl">
-                Mobiles, accessories, screen protection aur service support ke
-                liye Betul ka trusted mobile destination.
+                A trusted Betul destination for mobiles, accessories, screen
+                protection and service support.
               </p>
 
               <div className="hero-proof">
@@ -652,7 +652,7 @@ function App() {
                 />
                 <div className="showcase-label">
                   <span>Shop counter</span>
-                  <strong>Accessories aur service support</strong>
+                  <strong>Accessories and service support</strong>
                 </div>
               </div>
               <div className="showcase-card showcase-small">
@@ -711,11 +711,11 @@ function App() {
         <section className="section-wrap about-section" id="about">
           <div className="section-heading" data-reveal>
             <span className="section-kicker">Brand Experience</span>
-            <h2>Balaji Mobile ko ek polished mobile brand ki tarah showcase kiya.</h2>
+            <h2>Balaji Mobile presented as a polished mobile retail brand.</h2>
             <p>
-              Page ka focus brand presence, services, shop visuals, Instagram,
-              Justdial listing aur directions par hai. Koi fake offer, pricing
-              ya live inventory claim nahi rakha gaya hai.
+              The page focuses on brand presence, services, real shop visuals,
+              Instagram, Justdial listing and directions. It avoids fake offers,
+              unverified pricing and live inventory claims.
             </p>
           </div>
 
@@ -728,7 +728,7 @@ function App() {
               />
               <figcaption>
                 <strong>Balaji Mobile storefront</strong>
-                <span>Betul customers ke liye clear and recognizable presence.</span>
+                <span>A clear and recognizable presence for Betul customers.</span>
               </figcaption>
             </figure>
 
@@ -737,7 +737,6 @@ function App() {
                 <article
                   className="pillar-card"
                   data-reveal
-                  style={{ transitionDelay: `${index * 90}ms` }}
                   key={item.title}
                 >
                   <span>{String(index + 1).padStart(2, "0")}</span>
@@ -754,19 +753,18 @@ function App() {
         <section className="section-wrap" id="services">
           <div className="section-heading" data-reveal>
             <span className="section-kicker">Services</span>
-            <h2>Mobiles, accessories aur service support ka complete experience.</h2>
+            <h2>A complete experience for phones, accessories and service support.</h2>
             <p>
-              Customer ke common needs ko clean sections me organize kiya gaya
-              hai, taaki Balaji Mobile ka offering clear dikhe.
+              Common customer needs are organized into clean sections so the
+              store offering is easy to understand.
             </p>
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <article
                 className="service-card"
                 data-reveal
-                style={{ transitionDelay: `${index * 70}ms` }}
                 key={service.title}
               >
                 <span className="animated-icon service-icon">
@@ -792,11 +790,11 @@ function App() {
             <div className="flex flex-col justify-center" data-reveal>
               <span className="section-kicker text-[#f3ba45]">Brand Look</span>
               <h2 className="mt-4 max-w-xl text-4xl font-semibold leading-tight sm:text-5xl">
-                Premium visual style jo Balaji Mobile ko strong brand feel de.
+                A premium visual system built around Balaji Mobile.
               </h2>
               <p className="mt-5 max-w-xl text-base leading-8 text-white/68">
-                Dark theme, real store photos, smooth animations aur clear
-                calls-to-action se page polished and memorable lagta hai.
+                Dark surfaces, real store photos, smooth animations and clear
+                calls-to-action make the page feel polished and memorable.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-3 sm:max-w-xl sm:grid-cols-4">
                 {accessoryHighlights.map((item) => (
@@ -822,20 +820,19 @@ function App() {
           <div className="split-heading" data-reveal>
             <div>
               <span className="section-kicker">Product Categories</span>
-              <h2>Balaji Mobile ke key categories ek clean layout me.</h2>
+              <h2>Key Balaji Mobile categories in a clean retail layout.</h2>
             </div>
             <p>
-              Phone enquiry, covers, chargers, audio, screen protection aur
-              service support ko premium category blocks me present kiya gaya hai.
+              Phone enquiries, covers, chargers, audio, screen protection and
+              service support are presented as premium category blocks.
             </p>
           </div>
 
           <div className="category-grid">
-            {categories.map((item, index) => (
+            {categories.map((item) => (
               <article
                 className="category-card"
                 data-reveal
-                style={{ transitionDelay: `${index * 70}ms` }}
                 key={item.title}
               >
                 <div className="category-icon animated-icon">
@@ -851,19 +848,18 @@ function App() {
         <section className="section-wrap" id="gallery">
           <div className="section-heading" data-reveal>
             <span className="section-kicker">Brand Gallery</span>
-            <h2>Storefront, counter aur product visuals.</h2>
+            <h2>Storefront, counter and product visuals.</h2>
             <p>
-              Real visuals se Balaji Mobile ka customer experience zyada clear,
-              polished aur trustworthy lagta hai.
+              Real visuals make the customer experience easier to understand,
+              more polished and more trustworthy.
             </p>
           </div>
 
           <div className="gallery-grid">
-            {gallery.map((item, index) => (
+            {gallery.map((item) => (
               <figure
                 className="gallery-card"
                 data-reveal
-                style={{ transitionDelay: `${index * 80}ms` }}
                 key={item.title}
               >
                 <img
@@ -886,11 +882,11 @@ function App() {
             <div className="premium-heading" data-reveal>
               <div>
                 <span className="premium-kicker">Signature Display</span>
-                <h2>Balaji Mobile ko flagship retail showcase jaisa feel diya.</h2>
+                <h2>A flagship retail showcase for Balaji Mobile.</h2>
               </div>
               <p>
-                Large cinematic visuals, tight spacing aur restrained black-shadow
-                treatment se shop photos ko premium brand presentation milta hai.
+                Cinematic visuals, tight spacing and restrained black-shadow
+                treatment create a premium brand presentation.
               </p>
             </div>
 
@@ -917,7 +913,7 @@ function App() {
               </article>
 
               <div className="premium-showcase-grid" data-reveal>
-                {premiumShowcase.slice(1).map((item, index) => (
+                {premiumShowcase.slice(1, 3).map((item, index) => (
                   <article className="premium-photo-card" key={item.title}>
                     <img src={item.image} alt={item.title} loading="lazy" />
                     <div className="premium-photo-content">
@@ -946,18 +942,17 @@ function App() {
             <div className="premium-commerce-panel" data-reveal>
               <div className="premium-carousel-copy">
                 <span className="premium-kicker">Mobile Carousel</span>
-                <h3>Phones aur accessories ko luxury display rail me rakha.</h3>
+                <h3>Phones and accessories in a luxury display rail.</h3>
                 <p>
-                  Cards hover par lift, shadow aur image-copy reveal karte hain.
-                  Current price aur availability store par verify karein.
+                  Cards lift smoothly on hover, reveal a picture copy and keep
+                  pricing or availability verification tied to the store listing.
                 </p>
               </div>
 
               <div className="mobile-carousel" aria-label="Premium mobile cards">
-                {mobileCarousel.map((item, index) => (
+                {mobileCarousel.map((item) => (
                   <article
                     className="mobile-product-card"
-                    style={{ transitionDelay: `${index * 70}ms` }}
                     key={item.title}
                   >
                     <img src={item.image} alt={item.title} loading="lazy" />
@@ -983,7 +978,7 @@ function App() {
                   <div>
                     <span>Luxury Coupon Pass</span>
                     <strong>Balaji Access Card</strong>
-                    <p>Cover, glass aur accessory enquiries ke liye local coupon pass.</p>
+                    <p>A local coupon pass for cover, glass and accessory enquiries.</p>
                   </div>
                 </div>
 
@@ -1017,11 +1012,11 @@ function App() {
             <div className="split-heading text-white" data-reveal>
               <div>
                 <span className="section-kicker text-[#f3ba45]">Customer Flow</span>
-                <h2>Customer ko enquiry se visit tak smooth path milta hai.</h2>
+                <h2>A clean path from interest to store visit.</h2>
               </div>
               <p className="text-white/68">
-                Website clear interest create karti hai, aur customer ko
-                directions, Justdial aur Instagram ke through next step deti hai.
+                The website builds interest and gives customers a clear next
+                step through directions, Justdial and Instagram.
               </p>
             </div>
 
@@ -1030,7 +1025,6 @@ function App() {
                 <article
                   className="process-card"
                   data-reveal
-                  style={{ transitionDelay: `${index * 110}ms` }}
                   key={step.title}
                 >
                   <span className="process-number">{String(index + 1).padStart(2, "0")}</span>
@@ -1050,11 +1044,11 @@ function App() {
             <div data-reveal>
               <span className="section-kicker">Public Links</span>
               <h2 className="mt-4 max-w-xl text-4xl font-semibold leading-tight sm:text-5xl">
-                Customer listing aur Instagram se details check kar sakta hai.
+                Customers can check details through the listing and Instagram.
               </h2>
               <p className="mt-5 max-w-xl text-base leading-8 text-[#171717]/66">
-                Justdial aur Instagram links ko visible rakha gaya hai, taaki
-                customer latest contact details aur store activity khud verify kar sake.
+                Justdial and Instagram links stay visible so customers can verify
+                contact details and store activity.
               </p>
               <div className="source-actions">
                 <a href={justdialUrl} target="_blank" rel="noreferrer">
@@ -1082,8 +1076,8 @@ function App() {
               <span className="section-kicker text-[#f3ba45]">Visit</span>
               <h2>Near Nagar Palika, Kothi Bazaar, Betul.</h2>
               <p>
-                Dukan par aane ke liye directions open karein, ya latest details
-                ke liye Instagram aur Justdial listing check karein.
+                Open directions for a store visit, or check Instagram and the
+                Justdial listing for the latest public details.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
@@ -1263,7 +1257,7 @@ function Footer() {
             <h2>Balaji Mobile & Accessories</h2>
             <p>
               Mobile sales, accessories and service support in Kothi Bazaar,
-              Betul. Latest contact details public listings par verify karein.
+              Betul. Verify the latest contact details through public listings.
             </p>
           </div>
         </div>
